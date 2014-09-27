@@ -10,31 +10,28 @@ module Ally
     class Api
       include Ally::Io
 
-    
       def say(text)
         super # do not delete
         port = ENV['PORT'] || 7455
-        HTTParty.post("http://localhost:#{port}/say", :query => { msg: text })
+        HTTParty.post("http://localhost:#{port}/say", query: { msg: text })
       end
 
       def listen
         app = HttpServer
         app.run!
       end
-    
     end
   end
 end
 
 class HttpServer < Sinatra::Base
-
   attr_accessor :io
 
   helpers Sinatra::Streaming
 
   port = ENV['PORT'] || 7455
   set :port, port
-  set :server, %w[thin mongrel webrick]
+  set :server, %w(thin mongrel webrick)
 
   before do
     content_type :txt
@@ -78,6 +75,6 @@ class HttpServer < Sinatra::Base
   post '/install' do
     require 'treat'
     Treat::Core::Installer.install 'english'
-    "done."
+    'done.'
   end
 end
