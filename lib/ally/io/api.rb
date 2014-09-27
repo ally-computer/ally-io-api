@@ -62,10 +62,10 @@ class HttpServer < Sinatra::Base
   end
 
   post '/inquiry' do
-    io = DLA::IO::Api.new
+    io = Ally::Io::Api.new
     if params[:msg]
       raw_text = params[:msg].chomp
-      inquiry = DLA::Inquiry.new(raw_text)
+      inquiry = Ally::Inquiry.new(raw_text)
       io.input(inquiry)
     else
       io.say('Sorry no message parameter in inquiry')
