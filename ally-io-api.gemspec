@@ -19,6 +19,9 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_dependency 'ally'
+  spec.add_dependency 'sinatra'
+  spec.add_dependency 'sinatra-contrib'
+  spec.add_dependency 'httparty'
 
   # development dependencies
   spec.add_development_dependency 'bundler', '~> 1.3'
